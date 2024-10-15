@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router'; // Import RouterModule
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // For ngModel
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule], // Add RouterModule here
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
 })

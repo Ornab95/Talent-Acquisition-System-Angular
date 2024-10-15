@@ -1,5 +1,6 @@
-<div class="flex items-center justify-center min-h-screen bg-gray-900">
-  <div class="w-full max-w-4xl bg-white rounded-3xl shadow-lg overflow-hidden">
+<div class="flex-grow flex items-center justify-center p-8 h-screen ">
+  <div class="border border-blue-200 flex w-full max-w-4xl bg-blue-200 rounded-3xl shadow-lg overflow-hidden ">
+    <!-- Left Side with Quote -->
     <div class="hidden md:flex md:w-1/2 bg-white items-center justify-center p-8">
       <div class="text-center text-gray-900">
         <h2 class="text-4xl font-bold mb-4">Unlock Your Potential at Southeast University</h2>
@@ -7,68 +8,63 @@
       </div>
     </div>
 
-    <div class="w-full md:w-1/2 bg-gray-800 p-8">
-      <h2 class="text-3xl font-bold text-white mb-6 text-center">Register with e-Recruitment</h2>
-      <form (ngSubmit)="onSubmit()" #registerForm="ngForm" autocomplete="off">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div>
-            <label class="block mb-2">First Name<span class="text-red-500">*</span></label>
-            <input type="text" [(ngModel)]="user.firstName" name="firstName" required
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+    <!-- Right Side with Form -->
+    <div class="w-full md:w-1/2 bg-gray-800 p-8 flex items-center justify-center">
+      <div class="w-full max-w-lg">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">Register with e-Recruitment</h2>
+        <form (ngSubmit)="onSubmit()" #registerForm="ngForm" autocomplete="off">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label class="block mb-2 text-blue-500">First Name<span class="text-red-500">*</span></label>
+              <input type="text" [(ngModel)]="user.firstName" name="firstName" required
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block mb-2 text-blue-500">Middle Name</label>
+              <input type="text" [(ngModel)]="user.middleName" name="middleName"
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block mb-2 text-blue-500">Last Name<span class="text-red-500">*</span></label>
+              <input type="text" [(ngModel)]="user.lastName" name="lastName" required
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block mb-2 text-blue-500">Date of Birth<span class="text-red-500">*</span></label>
+              <input type="date" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" required
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block mb-2 text-blue-500">E-mail<span class="text-red-500">*</span></label>
+              <input type="email" [(ngModel)]="user.email" name="email" required
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block mb-2 text-blue-500">Password<span class="text-red-500">*</span></label>
+              <input type="password" [(ngModel)]="user.password" name="password" required
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
+            <div>
+              <label class="block mb-2 text-blue-500">Retype Password<span class="text-red-500">*</span></label>
+              <input type="password" [(ngModel)]="user.retypePassword" name="retypePassword" required
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
+            <div class="md:col-span-2">
+              <label class="block mb-2 text-blue-500">Mobile No.<span class="text-red-500">*</span></label>
+              <input type="tel" [(ngModel)]="user.mobile" name="mobile" pattern="[0-9]{11}" required
+                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
+            </div>
           </div>
+          <button type="submit"
+            class="w-full p-3 bg-blue-400 hover:bg-white text-gray-900 font-semibold rounded-full transition duration-300">Sign
+            Up</button>
+        </form>
 
-          <div>
-            <label class="block mb-2">Middle Name</label>
-            <input type="text" [(ngModel)]="user.middleName" name="middleName"
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-          </div>
-
-          <div>
-            <label class="block mb-2">Last Name<span class="text-red-500">*</span></label>
-            <input type="text" [(ngModel)]="user.lastName" name="lastName" required
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-          </div>
-
-          <div>
-            <label class="block mb-2">Date of Birth<span class="text-red-500">*</span></label>
-            <input type="date" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" required
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-          </div>
-
-          <div class="md:col-span-2">
-            <label class="block mb-2">E-mail<span class="text-red-500">*</span></label>
-            <input type="email" [(ngModel)]="user.email" name="email" required
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-          </div>
-
-          <div>
-            <label class="block mb-2">Password<span class="text-red-500">*</span></label>
-            <input type="password" [(ngModel)]="user.password" name="password" required
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-          </div>
-
-          <div>
-            <label class="block mb-2">Retype Password<span class="text-red-500">*</span></label>
-            <input type="password" [(ngModel)]="user.retypePassword" name="retypePassword" required
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-          </div>
-
-          <div class="md:col-span-2">
-            <label class="block mb-2">Mobile No.<span class="text-red-500">*</span></label>
-            <input type="tel" [(ngModel)]="user.mobile" name="mobile" pattern="[0-9]{11}" required
-              class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-          </div>
-        </div>
-
-        <button type="submit"
-          class="w-full p-3 bg-blue-400 hover:bg-white text-gray-900 font-semibold rounded-full transition duration-300">Sign
-          Up</button>
-      </form>
-
-      <p class="mt-4 text-center text-red-500">{{ message }}</p>
-      <p class="mt-6 text-center">
-        Already have an account? <a [routerLink]="['/']" class="text-blue-400">Sign In</a>
-      </p>
+        <p class="mt-4 text-center text-red-500">{{ message }}</p>
+        <p class="mt-6 text-center">
+          Already have an account? <a [routerLink]="['/']" class="text-blue-400">Sign In</a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
