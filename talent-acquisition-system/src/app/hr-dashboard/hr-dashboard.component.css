@@ -1,0 +1,9 @@
+/* hr-dashboard.component.css */
+
+.container {
+  max-width: 1200px;
+}
+
+button {
+  transition: background-color 0.2s ease-in-out;
+}

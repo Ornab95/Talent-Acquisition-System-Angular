@@ -1,59 +1,43 @@
-<div class="flex-grow flex items-center justify-center p-8 h-screen ">
-  <div class="border border-blue-200 flex w-full max-w-4xl bg-blue-200 rounded-3xl shadow-lg overflow-hidden ">
-    <!-- Left Side with Quote -->
+<div class="flex-grow flex items-center justify-center p-8 h-screen">
+  <div class="border border-blue-200 flex w-full max-w-4xl bg-blue-200 rounded-3xl shadow-lg overflow-hidden">
+    <!-- Left Side with Message -->
     <div class="hidden md:flex md:w-1/2 bg-white items-center justify-center p-8">
       <div class="text-center text-gray-900">
-        <h2 class="text-4xl font-bold mb-4">Unlock Your Potential at Southeast University</h2>
-        <p class="text-xl">Join Us to Shape the Future!</p>
+        <h2 class="text-4xl font-bold mb-4">Join Us as an HR at Southeast University</h2>
+        <p class="text-xl">Empower Future Talent Today!</p>
       </div>
     </div>
 
     <!-- Right Side with Form -->
     <div class="w-full md:w-1/2 bg-gray-800 p-8 flex items-center justify-center">
       <div class="w-full max-w-lg">
-        <h2 class="text-3xl font-bold text-white mb-6 text-center">Register with e-Recruitment</h2>
-        <form (ngSubmit)="onSubmit()" #registerForm="ngForm" autocomplete="off">
+        <h2 class="text-3xl font-bold text-white mb-6 text-center">HR Registration</h2>
+        <form (ngSubmit)="onSubmit()" #hrForm="ngForm" autocomplete="off">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div>
               <label class="block mb-2 text-blue-500">First Name<span class="text-red-500">*</span></label>
-              <input type="text" [(ngModel)]="user.firstName" name="firstName" required
-                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-            </div>
-            <div>
-              <label class="block mb-2 text-blue-500">Middle Name</label>
-              <input type="text" [(ngModel)]="user.middleName" name="middleName"
+              <input type="text" [(ngModel)]="hr.firstName" name="firstName" required
                 class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
             </div>
             <div>
               <label class="block mb-2 text-blue-500">Last Name<span class="text-red-500">*</span></label>
-              <input type="text" [(ngModel)]="user.lastName" name="lastName" required
-                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-            </div>
-            <div>
-              <label class="block mb-2 text-blue-500">Date of Birth<span class="text-red-500">*</span></label>
-              <input type="date" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" required
+              <input type="text" [(ngModel)]="hr.lastName" name="lastName" required
                 class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
             </div>
             <div class="md:col-span-2">
               <label class="block mb-2 text-blue-500">E-mail<span class="text-red-500">*</span></label>
-              <input type="email" [(ngModel)]="user.email" name="email" required
+              <input type="email" [(ngModel)]="hr.email" name="email" required
                 class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
             </div>
             <div>
               <label class="block mb-2 text-blue-500">Password<span class="text-red-500">*</span></label>
-              <input type="password" [(ngModel)]="user.password" name="password" required
+              <input type="password" [(ngModel)]="hr.password" name="password" required
                 class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
             </div>
             <div>
               <label class="block mb-2 text-blue-500">Retype Password<span class="text-red-500">*</span></label>
-              <input type="password" [(ngModel)]="user.retypePassword" name="retypePassword" required
+              <input type="password" [(ngModel)]="hr.retypePassword" name="retypePassword" required
                 class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-            </div>
-            <div class="md:col-span-2">
-              <label class="block mb-2 text-blue-500">Mobile No.<span class="text-red-500">*</span></label>
-              <input type="tel" [(ngModel)]="user.mobile" name="mobile" pattern="[0-9]{11}" required
-                class="w-full p-3 bg-gray-700 text-gray-300 rounded-xl border focus:border-blue-500" />
-
             </div>
           </div>
           <button type="submit"

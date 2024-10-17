@@ -1,51 +1,44 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'app-hr-signup',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  templateUrl: './hr-signup.component.html',
+  styleUrls: ['./hr-signup.component.css'],
 })
-export class SignupComponent {
-  user: any = {
-  firstName: '',
-  middleName: '',
-  lastName: '',
-  dateOfBirth: '',
-  email: '',
-  password: '',
-  retypePassword: '',
-  mobileNo: '',
-};
+export class HrSignupComponent {
+  hr: any = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    retypePassword: '',
 
+  };
   message: string = '';
 
   constructor(private router: Router) {}
 
   async onSubmit() {
-    if (this.user.password !== this.user.retypePassword) {
+    if (this.hr.password !== this.hr.retypePassword) {
       this.message = 'Passwords do not match!';
       return;
     }
 
-
-    console.log(this.user);
-
     try {
-      const response = await fetch('http://localhost:8080/api/signup/user', {
+      const response = await fetch('http://localhost:8080/api/signup/hr', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.user),
+        body: JSON.stringify(this.hr),
       });
 
       if (response.ok) {
-        this.message = 'Registration successful!';
-        setTimeout(() => this.router.navigate(['/']), 2000);
+        this.message = 'HR Registration successful!';
+        setTimeout(() => this.router.navigate(['/signin']), 2000);
       } else {
         const errorData = await response.json();
         this.message = `Registration failed: ${errorData.message || response.statusText}`;
@@ -54,7 +47,5 @@ export class SignupComponent {
       console.error('Error:', error);
       this.message = 'An error occurred. Please try again.';
     }
-}
-
-
+  }
 }

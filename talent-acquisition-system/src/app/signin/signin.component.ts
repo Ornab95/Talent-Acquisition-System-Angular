@@ -1,47 +1,57 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router'; // Import RouterModule
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // For ngModel
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule], // Add RouterModule here
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent {
   email: string = '';
   password: string = '';
-  role: string = 'user'; // Default role
+  role: string = 'user';
   message: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
 
-  onSubmit() {
-    const data = { email: this.email, password: this.password, role: this.role };
-
-    fetch('http://localhost:8080/api/signin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
-      .then(async (response) => {
-        const result = await response.json();
-        if (response.ok) {
-          this.message = 'Signin successful!';
-          if (this.role === 'hr') {
-            this.router.navigate(['/hr-dashboard']); // Redirect to HR dashboard
-          } else {
-            this.router.navigate(['/user-dashboard']); // Redirect to User dashboard
-          }
-        } else {
-          this.message = 'Signin failed. Please check your credentials.';
-        }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        this.message = 'Signin failed. Please try again.';
-      });
   }
+
+ onSubmit() {
+  const data = { email: this.email, password: this.password };
+
+  fetch('http://localhost:8080/api/signin', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data),
+  credentials: 'include', // Allow credentials (if cookies are needed)
+})
+  .then(async (response) => {
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Error Data:', errorData);
+      this.message = 'Signin failed: ' + errorData;
+    } else {
+      const result = await response.json();
+      this.message = 'Signin successful!';
+
+      if (result.role === 'hr') {
+        this.router.navigate(['/hr-dashboard']);
+        console.log('HR Dashboard');
+      } else {
+        this.router.navigate(['/user-dashboard']);
+        console.log('User Dashboard');
+
+      }
+    }
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+    this.message = 'Signin failed. Please try again.';
+  });
+
+}
 }
