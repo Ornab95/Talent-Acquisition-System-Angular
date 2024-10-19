@@ -4,11 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root', // This provides the service globally.
 })
 export class AuthService {
+  private user: any; // Store user data (you can define a proper type)
+
   constructor() {}
 
-  // Ensure the signIn method is defined properly
-  async signIn(email: string, password: string, role: string): Promise<Response> {
-    const url = 'http://localhost:8080/api/signin';
+  // Sign in method
+  async signIn(email: string, password: string, role: string): Promise<void> {
+    const url = 'http://localhost:8080/api/signin'; // Adjust the endpoint as needed
     const body = JSON.stringify({ email, password, role });
 
     try {
@@ -17,10 +19,46 @@ export class AuthService {
         headers: { 'Content-Type': 'application/json' },
         body,
       });
-      return response;
+
+      if (!response.ok) {
+        throw new Error('Sign-in failed. Please check your credentials.');
+      }
+
+      const result = await response.json();
+      this.user = result; // Store user data
+      localStorage.setItem('user', JSON.stringify(this.user)); // Save user data in local storage
     } catch (error) {
       console.error('Error in AuthService:', error);
+      throw error; // Re-throw the error for further handling
+    }
+  }
+
+  // Logout method
+  async logout(): Promise<void> {
+    try {
+      // Call backend to invalidate the session if necessary
+      await fetch('http://localhost:8080/api/logout', {
+        method: 'POST',
+        credentials: 'include', // Include credentials if necessary
+      });
+
+      // Clear user data
+      this.user = null;
+      localStorage.removeItem('user');
+      console.log('User logged out successfully.');
+    } catch (error) {
+      console.error('Error during logout:', error);
       throw error;
     }
+  }
+
+  // Method to check if the user is logged in
+  isLoggedIn(): boolean {
+    return this.user !== null;
+  }
+
+  // Optional: Get the current user
+  getCurrentUser() {
+    return this.user;
   }
 }

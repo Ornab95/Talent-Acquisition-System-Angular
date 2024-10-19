@@ -19,11 +19,15 @@ export class HrDashboardComponent implements OnInit {
   ngOnInit() {
     this.hr = JSON.parse(localStorage.getItem('hr') || '{}');
   }
-
-  logout() {
-    localStorage.removeItem('hr');
-    this.router.navigate(['/signin']);
-  }
+  async logout(): Promise<void> {
+  await fetch('http://localhost:8080/api/logout',
+    {
+       method: 'POST',
+       credentials: 'include'
+    });
+  localStorage.removeItem('hr');
+  this.router.navigate(['/signin']);
+}
 
   deleteJob(id: number) {
     this.jobs = this.jobs.filter(job => job.id !== id);
