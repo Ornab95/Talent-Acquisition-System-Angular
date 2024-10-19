@@ -1,2 +1,4 @@
-package com.talent_acquisition_system.service;public class UserService {
+package com.talent_acquisition_system.service;
+
+public class UserService {
 }
