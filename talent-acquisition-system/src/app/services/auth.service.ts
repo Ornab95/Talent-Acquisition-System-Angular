@@ -36,13 +36,12 @@ export class AuthService {
   // Logout method
   async logout(): Promise<void> {
     try {
-      // Call backend to invalidate the session if necessary
       await fetch('http://localhost:8080/api/logout', {
         method: 'POST',
-        credentials: 'include', // Include credentials if necessary
+        credentials: 'include',
       });
 
-      // Clear user data
+
       this.user = null;
       localStorage.removeItem('user');
       console.log('User logged out successfully.');
@@ -54,7 +53,7 @@ export class AuthService {
 
   // Method to check if the user is logged in
   isLoggedIn(): boolean {
-    return this.user !== null;
+    return !!localStorage.getItem('token');
   }
 
   // Optional: Get the current user
