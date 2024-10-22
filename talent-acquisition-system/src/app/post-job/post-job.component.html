@@ -1,1 +1,45 @@
-<p>post-job works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="w-full max-w-lg p-8 bg-white shadow-lg rounded-lg">
+    <h2 class="text-3xl font-bold text-center text-indigo-600 mb-6">Post a New Job</h2>
+
+    <form (ngSubmit)="submitJob()" #jobForm="ngForm" class="space-y-6">
+      <!-- Job Title -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Job Title</label>
+        <input type="text"
+          class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-indigo-500"
+          [(ngModel)]="job.title" name="title" required />
+      </div>
+
+      <!-- Job Description -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Description</label>
+        <textarea rows="4"
+          class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-indigo-500"
+          [(ngModel)]="job.description" name="description" required></textarea>
+      </div>
+
+      <!-- Location -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Location</label>
+        <input type="text"
+          class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-indigo-500"
+          [(ngModel)]="job.location" name="location" required />
+      </div>
+
+      <!-- Salary -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Salary</label>
+        <input type="text"
+          class="mt-1 block w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-indigo-500"
+          [(ngModel)]="job.salary" name="salary" required />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg"
+        [disabled]="!jobForm.valid">
+        Post Job
+      </button>
+    </form>
+  </div>
+</div>

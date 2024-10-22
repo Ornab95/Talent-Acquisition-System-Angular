@@ -1,4 +1,4 @@
-<div class="flex-grow flex items-center justify-center p-8 h-screen">
+<div class="flex-grow flex items-center justify-center p-8 h-screen bg-gray-700">
   <div class="border border-blue-200 flex w-full max-w-4xl bg-blue-200 rounded-3xl shadow-lg overflow-hidden">
     <div class="hidden sm:flex sm:w-2/3 bg-gray-200 items-center justify-center p-8">
       <div class="text-center text-gray-900">
@@ -37,7 +37,7 @@
         </form>
 
         <p class="mt-4 text-center text-red-500" *ngIf="message">{{ message }}</p>
-        <p class="mt-6 text-center">
+        <p class="mt-6 text-center text-white">
           Don't have an account?
           <a [routerLink]="['/signup']" class="text-blue-400 hover:text-gray-200 transition duration-300">Sign Up</a>
         </p>

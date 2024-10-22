@@ -1,1 +1,10 @@
-<p>job-listing works!</p>
+<div class="p-8">
+  <h2 class="text-2xl font-bold mb-6">Available Jobs</h2>
+  <ul class="list-disc pl-5 mt-4">
+    <li *ngFor="let job of jobs" class="mb-4">
+      <h3 class="text-xl">{{ job.title }}</h3>
+      <p>{{ job.description }}</p>
+      <span class="text-gray-500">Location: {{ job.location }}</span>
+    </li>
+  </ul>
+</div>

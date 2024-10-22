@@ -1,8 +1,9 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { Injectable } from '@angular/core';
 
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
-};
+@Injectable({
+  providedIn: 'root'
+})
+export class AppConfig {
+  // Define your configuration here
+  public apiUrl = 'http://localhost:8080/api';
+}
