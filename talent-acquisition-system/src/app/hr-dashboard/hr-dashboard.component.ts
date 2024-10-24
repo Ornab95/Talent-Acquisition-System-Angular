@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+// import { AuthService } from '/ser'
 
 @Component({
   selector: 'app-hr-dashboard',
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./hr-dashboard.component.css']
 })
 export class HrDashboardComponent implements OnInit {
+  [x: string]: any;
   hr: any;
   jobs = [
     { id: 1, title: 'Software Engineer', description: 'Develop and maintain software.', location: 'New York', salary: '$120k' },
@@ -17,6 +19,8 @@ export class HrDashboardComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+     this['authService'].logout();  // Clear the token
+    this.router.navigate(['/signin']);
     this.hr = JSON.parse(localStorage.getItem('hr') || '{}');
   }
   async logout(): Promise<void> {
@@ -28,6 +32,7 @@ export class HrDashboardComponent implements OnInit {
   localStorage.removeItem('hr');
   this.router.navigate(['/signin']);
 }
+
 
   deleteJob(id: number) {
     this.jobs = this.jobs.filter(job => job.id !== id);
